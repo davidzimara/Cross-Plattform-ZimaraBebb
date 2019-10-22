@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './components/HomeScreen';
-import SettingsScreen from './components/SettingsScreen';
 
-export default function App() {
-  return <SettingsScreen />;
+export default function SettingsScreen() {
+  return (
+    <View style={styles.container}>
+      <Text>SETTINGS</Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
