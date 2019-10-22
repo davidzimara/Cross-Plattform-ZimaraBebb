@@ -2,16 +2,21 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
 
+import DetailScreen from './components/DetailScreen';
 import HomeScreen from './components/HomeScreen';
 import SettingsScreen from './components/SettingsScreen';
 
-// definiere navigationsziele als JS-Objekt
+// definiere Stack-Navigator
+const stackNavigator = createStackNavigator({
+  home: HomeScreen,
+  detail: DetailScreen
+});
+
+// definiere navigationsziele für Bottom-Tab als JS-Objekt
 const destinations = {
-  zuhause: {
-    screen: HomeScreen,
-    navigationOptions: { title: 'Mein Zuhause' }
-  },
+  zuhause: stackNavigator,
   settings: SettingsScreen
 };
 
