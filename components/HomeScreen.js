@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { Button } from 'react-native-paper';
+
 
 export default function HomeScreen(props) {
   return (
@@ -8,7 +10,8 @@ export default function HomeScreen(props) {
       <Button
         title="Gehe zu DetailScreen"
         onPress={() => props.navigation.navigate('detail')}
-      />
+        mode="contained"
+      >Gehe zu DetailScreen</Button>
     </View>
   );
 }

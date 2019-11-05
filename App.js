@@ -3,13 +3,13 @@ import {StyleSheet, Text, View} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
+import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+
 
 import DetailScreen from './components/DetailScreen';
 import HomeScreen from './components/HomeScreen';
-import SettingsScreen from './components/SettingsScreen';
 import CategoriesScreen from "./components/CategoriesScreen";
 import CreateScreen from "./components/CreateScreen";
-import StatisticsScreen from "./components/StatisticsScreen";
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -22,11 +22,9 @@ const stackNavigator = createStackNavigator({
 
 // definiere navigationsziele für Bottom-Tab als JS-Objekt
 const destinations = {
-    home: stackNavigator,
-    Kategorien: CategoriesScreen,
+    Home: stackNavigator,
     Erstellen: CreateScreen,
-    Statistiken: StatisticsScreen,
-    Einstellungen: SettingsScreen
+    Kategorien: CategoriesScreen
 };
 
 const defaultNavigationOptions = {
@@ -35,16 +33,12 @@ const defaultNavigationOptions = {
             const {routeName} = navigation.state;
             let IconComponent = Ionicons;
             let iconName;
-            if (routeName === 'home') {
+            if (routeName === 'Home') {
                 iconName = `ios-home`;
-            } else if (routeName === 'Einstellungen') {
-                iconName = `ios-options`;
             } else if (routeName === 'Erstellen') {
                 iconName = `ios-add-circle`;
             } else if (routeName === 'Kategorien') {
                 iconName = `ios-list`;
-            } else if (routeName === 'Statistiken') {
-                iconName = `ios-stats`;
             }
 
             // You can return any component that you like here!
@@ -61,10 +55,24 @@ const defaultNavigationOptions = {
 const bottomTabNav = createBottomTabNavigator(destinations, defaultNavigationOptions);
 
 // HauptNavigationr
-const navigator = createAppContainer(bottomTabNav);
+const Navigator = createAppContainer(bottomTabNav);
 
-export default navigator;
+const theme = {
+    ...DefaultTheme,
+    colors: {
+        ...DefaultTheme.colors,
+        primary: 'tomato',
+        accent: 'yellow',
+    },
+};
 
+export default function App() {
+    return(
+        <PaperProvider theme={theme}>
+            <Navigator />
+        </PaperProvider>
+    )
+}
 const styles = StyleSheet.create({
     container: {
         flex: 1,
