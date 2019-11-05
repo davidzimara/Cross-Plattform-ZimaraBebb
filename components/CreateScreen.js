@@ -21,8 +21,10 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         justifyContent: 'center',
+        width: '80%',
+        alignSelf: 'center'
     },
     spacer: {
-        marginBottom: '5%',
+        marginBottom: 5,
     }
 });
