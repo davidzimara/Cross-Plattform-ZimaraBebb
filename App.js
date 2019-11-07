@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
-import { DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
-
-
+import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
+import * as firebase from 'firebase';
+import ApiKeys from './constants/ApiKeys';
+import RootNavigation from './navigation/RootNavigation';
 import DetailScreen from './components/DetailScreen';
 import HomeScreen from './components/HomeScreen';
 import CategoriesScreen from "./components/CategoriesScreen";
@@ -66,12 +67,33 @@ const theme = {
     },
 };
 
-export default function App() {
-    return(
-        <PaperProvider theme={theme}>
-            <Navigator />
-        </PaperProvider>
-    )
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoadingComplete: false,
+            isAuthenticationReady: false,
+            isAuthenticated: false,
+        };
+
+        // Initialize firebase...
+        if (!firebase.apps.length) { firebase.initializeApp(ApiKeys.FirebaseConfig); }
+        firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
+    }
+
+    onAuthStateChanged = (user) => {
+        this.setState({isAuthenticationReady: true});
+        this.setState({isAuthenticated: !!user});
+    }
+
+    render() {
+        return (
+            <PaperProvider theme={theme}>
+
+                {(this.state.isAuthenticated) ? <Navigator /> : <RootNavigation />}
+            </PaperProvider>
+        )
+    }
 }
 const styles = StyleSheet.create({
     container: {
