@@ -1,10 +1,10 @@
 export default {
     FirebaseConfig: {
-        apiKey: "AIzaSyB2Q8O4PG9SmubUpjuZhj0G49DtfCyQEag",
-        authDomain: "react-native-quizapp.firebaseapp.com",
-        databaseURL: "https://react-native-quizapp.firebaseio.com",
-        projectId: "react-native-quizapp",
-        storageBucket: "react-native-quizapp.appspot.com",
-        messagingSenderId: "194729140344"
+        apiKey: "AIzaSyAAWelJGPRuDQ_TyrTkdUoW4g9hTvpgLlY",
+        authDomain: "lernapp-f8273.firebaseapp.com",
+        databaseURL: "https://lernapp-f8273.firebaseio.com",
+        projectId: "lernapp-f8273",
+        storageBucket: "lernapp-f8273.appspot.com",
+        messagingSenderId: "400295031332"
     }
 }

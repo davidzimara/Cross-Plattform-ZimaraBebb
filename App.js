@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, StatusBar} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -77,7 +77,9 @@ export default class App extends Component {
         };
 
         // Initialize firebase...
-        if (!firebase.apps.length) { firebase.initializeApp(ApiKeys.FirebaseConfig); }
+        if (!firebase.apps.length) {
+            firebase.initializeApp(ApiKeys.FirebaseConfig);
+        }
         firebase.auth().onAuthStateChanged(this.onAuthStateChanged);
     }
 
@@ -89,8 +91,8 @@ export default class App extends Component {
     render() {
         return (
             <PaperProvider theme={theme}>
-
-                {(this.state.isAuthenticated) ? <Navigator /> : <RootNavigation />}
+                <StatusBar backgroundColor="blue" barStyle="light-content"/>
+                {(this.state.isAuthenticated) ? <Navigator/> : <RootNavigation/>}
             </PaperProvider>
         )
     }

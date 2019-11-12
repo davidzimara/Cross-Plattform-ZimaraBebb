@@ -80,7 +80,7 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     input: {
-        width: 200, height: 40,  marginBottom: 10
+        width: 200, height: 60,  marginBottom: 10
     },
     button: {
         marginBottom: 10,

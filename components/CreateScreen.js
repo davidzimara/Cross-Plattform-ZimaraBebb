@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View, AsyncStorage} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import * as  SQLite from "expo-sqlite";
+import * as firebase from 'firebase';
+
 
 
 const database = SQLite.openDatabase('my_storage.db');
@@ -14,23 +16,34 @@ export default class CreateScreen extends Component {
         // const name = await AsyncStorage.getItem('NEW_CATEGORY');
         // console.log(name)
 
+        firebase.database().ref('Categorys/').on("value", function(snapshot) {
+            console.log(snapshot.val());
+        });
 
-        database.transaction(transaction => transaction.executeSql('CREATE TABLE IF NOT EXISTS  people (id Integer PRIMARY KEY NOT NULL, name TEXT )'))
-
-        database.transaction(transaction => transaction.executeSql('SELECT * from people', [],(_, result)=> {
-            console.log(result.rows._array);
-        }))
+        // database.transaction(transaction => transaction.executeSql('CREATE TABLE IF NOT EXISTS  people (id Integer PRIMARY KEY NOT NULL, name TEXT )'))
+        //
+        // database.transaction(transaction => transaction.executeSql('SELECT * from people', [],(_, result)=> {
+        //     console.log(result.rows._array);
+        // }))
     }
 
     _save = () => {
         // // in Asyncstorage speichern
         // AsyncStorage.setItem('NEW_CATEGORY', this.state.name)
         const { name } = this.state;
-        database.transaction(transaction => transaction.executeSql(
-            'INSERT into people (name) VALUES (?)', [name],
-            (_, result) => console.log(result)
-            )
-        );
+
+        firebase.database().ref('Categorys/').push({
+            name: name
+        }).then((data)=>{
+            //success callbackpush
+            console.log('data ' , data)
+        });
+
+        // database.transaction(transaction => transaction.executeSql(
+        //     'INSERT into people (name) VALUES (?)', [name],
+        //     (_, result) => console.log(result)
+        //     )
+        // );
     };
 
 
