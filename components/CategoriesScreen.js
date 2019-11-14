@@ -6,35 +6,46 @@ import * as firebase from "firebase";
 export default class CategoriesScreen extends Component {
 
 
-  constructor(props) {
-    super(props);
-    this.names = ''
-  }
+    constructor(props) {
+        super(props);
+        this.names = '';
+        this.state = {
+            categories: []
+        }
+    }
 
 
-  async componentDidMount() {
-        // //Daten aus Asyncstorage auslesen
-        // const name = await AsyncStorage.getItem('NEW_CATEGORY');
-        // console.log(name)
+    componentDidMount() {
+        const ref = firebase.database().ref('Categorys');
 
-        firebase.database().ref('Categorys/').on("value", function (snapshot) {
-          // console log for data
-            console.log(snapshot.val());
-        });
+        ref.once('value').then(function (snapshot) {
+            const categories = [];
 
-        // database.transaction(transaction => transaction.executeSql('CREATE TABLE IF NOT EXISTS  people (id Integer PRIMARY KEY NOT NULL, name TEXT )'))
-        //
-        // database.transaction(transaction => transaction.executeSql('SELECT * from people', [],(_, result)=> {
-        //     console.log(result.rows._array);
-        // }))
+            snapshot.forEach(item => {
+                const temp = item.val();
+                categories.push(temp);
+                return false;
+            });
+
+            this.setState({    //PASSING VARIABLE TO STATE
+                categories: categories
+            });
+
+        }.bind(this));
+
     }
 
     render() {
+
+        console.log(this.state.categories);
         return (
             <View style={styles.container}>
                 <Text>Kategories</Text>
-
-
+                {
+                    this.state.categories.map((category, key) => (
+                        <Text key={key}> {category.name} </Text>
+                    ))
+                }
             </View>
         );
     }
