@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, StatusBar} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {createAppContainer} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -10,6 +10,7 @@ import RootNavigation from './navigation/RootNavigation';
 import CreateQuestionScreen from './components/CreateQuestionScreen';
 import HomeScreen from './components/HomeScreen';
 import CategoriesScreen from "./components/CategoriesScreen";
+import CategoryDetailScreen from "./components/CategoryDetailScreen";
 import CreateScreen from "./components/CreateScreen";
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -17,15 +18,21 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // definiere Stack-Navigator
 const stackNavigator = createStackNavigator({
-    home: HomeScreen,
-    createQuestion: CreateQuestionScreen
+    create: CreateScreen,
+    createQuestion: CreateQuestionScreen,
+
+});
+
+const categoryStackNavigator = createStackNavigator({
+    createCategory: CategoriesScreen,
+    categoryDetail: CategoryDetailScreen
 });
 
 // definiere navigationsziele für Bottom-Tab als JS-Objekt
 const destinations = {
-    Home: stackNavigator,
-    Erstellen: CreateScreen,
-    Kategorien: CategoriesScreen
+    Home: HomeScreen,
+    Erstellen: stackNavigator,
+    Kategorien: categoryStackNavigator
 };
 
 const defaultNavigationOptions = {
@@ -91,7 +98,6 @@ export default class App extends Component {
     render() {
         return (
             <PaperProvider theme={theme}>
-                <StatusBar backgroundColor="blue" barStyle="light-content"/>
                 {(this.state.isAuthenticated) ? <Navigator/> : <RootNavigation/>}
             </PaperProvider>
         )

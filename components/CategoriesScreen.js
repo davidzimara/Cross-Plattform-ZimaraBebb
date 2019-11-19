@@ -93,7 +93,7 @@ export default class CategoriesScreen extends Component {
                 {
                     this.state.categories.map((category, key) => (
                             <View key={key} style={styles.category}>
-                                <Text style={styles.text}> {category.name} </Text>
+                                <Button onPress={() => this.props.navigation.navigate('categoryDetail', {category: category})} style={styles.text}> {category.name} </Button>
                                 <IconComponent style={styles.icons} onPress={() => this._editAlert(category.id)} name={'md-create'} size={25}
                                                color={'tomato'}/>
                                 <IconComponent style={styles.icons} onPress={() => this._delete(category.id)} name={'md-remove-circle-outline'}
