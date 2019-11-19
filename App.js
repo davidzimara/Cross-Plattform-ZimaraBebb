@@ -86,7 +86,7 @@ export default class App extends Component {
     onAuthStateChanged = (user) => {
         this.setState({isAuthenticationReady: true});
         this.setState({isAuthenticated: !!user});
-    }
+    };
 
     render() {
         return (

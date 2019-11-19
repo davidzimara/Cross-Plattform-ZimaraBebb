@@ -18,7 +18,7 @@ export default class SignupScreen extends React.Component {
 
     onSignupPress = () => {
         if (this.state.password !== this.state.passwordConfirm) {
-            Alert.alert("Passwords do not match");
+            Alert.alert("Passwort ist falsch");
             return;
         }
 
@@ -27,7 +27,7 @@ export default class SignupScreen extends React.Component {
             }, (error) => {
                 Alert.alert(error.message);
             });
-    }
+    };
 
     onBackToLoginPress = () => {
         var navActions = StackActions.reset({
@@ -35,13 +35,13 @@ export default class SignupScreen extends React.Component {
             actions: [NavigationActions.navigate({routeName: "Login"})]
         });
         this.props.navigation.dispatch(navActions);
-    }
+    };
 
     render() {
         return (
             <View style={{paddingTop: 50, alignItems: "center"}}>
 
-                <Text>Signup</Text>
+                <Text>Registrierung</Text>
 
                 <TextInput style={styles.input}
                            value={this.state.email}
@@ -80,9 +80,9 @@ export default class SignupScreen extends React.Component {
                            autoCorrect={false}
                 />
 
-                <Button style={styles.button} mode='contained' title="Signup" onPress={this.onSignupPress}>Signup</Button>
+                <Button style={styles.button} mode='contained' title="Registrieren" onPress={this.onSignupPress}>Registrieren</Button>
 
-                <Button style={styles.button} mode='contained' title="Back to Login" onPress={this.onBackToLoginPress}>Back to Login</Button>
+                <Button style={styles.button} mode='contained' title="zurück zum Login" onPress={this.onBackToLoginPress}>zurück zum Login</Button>
             </View>
         );
     }

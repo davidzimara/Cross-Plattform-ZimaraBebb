@@ -42,7 +42,7 @@ export default class LoginScreen extends React.Component {
         return (
             <View style={{paddingTop: 50, alignItems: "center"}}>
 
-                <Text>Login</Text>
+                <Text>Anmeldung</Text>
 
                 <TextInput style={styles.input}
                            value={this.state.email}
@@ -68,11 +68,11 @@ export default class LoginScreen extends React.Component {
                            autoCorrect={false}
                 />
 
-                <Button mode='contained' style={styles.button} title="Login" onPress={this.onLoginPress}>Login</Button>
-                <Button mode='contained' style={styles.button} title="Create account..."
-                        onPress={this.onCreateAccountPress}>Create account...</Button>
-                <Button mode='contained' style={styles.button} title="Forgot Password..."
-                        onPress={this.onForgotPasswordPress}>Forgot Password...</Button>
+                <Button mode='contained' style={styles.button} title="Anmeldung" onPress={this.onLoginPress}>Anmeldung</Button>
+                <Button mode='contained' style={styles.button} title="Account erstellen"
+                        onPress={this.onCreateAccountPress}>Account erstellen</Button>
+                <Button mode='contained' style={styles.button} title="Passwort vergessen"
+                        onPress={this.onForgotPasswordPress}>Passwort vergessen</Button>
             </View>
         );
     }

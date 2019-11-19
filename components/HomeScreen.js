@@ -8,7 +8,7 @@ export default function HomeScreen(props) {
   return (
     <View style={styles.container}>
       <Button style={styles.spacer} title="Gehe zu DetailScreen" onPress={() => props.navigation.navigate('createQuestion')} mode="contained">Spielen</Button>
-      <Button style={styles.spacer} title="Logout" onPress={() =>     firebase.auth().signOut()} mode="contained">Logout</Button>
+      <Button style={styles.spacer} title="Ausloggen" onPress={() =>     firebase.auth().signOut()} mode="contained">Ausloggen</Button>
     </View>
   );
 }

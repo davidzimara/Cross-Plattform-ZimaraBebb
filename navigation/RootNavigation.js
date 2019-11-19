@@ -29,6 +29,7 @@ const Navigator = createAppContainer(RootStackNavigator);
 
 
 export default class RootNavigator extends React.Component {
+
     componentDidMount() {
         this._notificationSubscription = this._registerForPushNotifications();
     }

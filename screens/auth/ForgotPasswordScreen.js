@@ -17,7 +17,7 @@ export default class ForgotPasswordScreen extends React.Component {
     onResetPasswordPress = () => {
         firebase.auth().sendPasswordResetEmail(this.state.email)
             .then(() => {
-                Alert.alert("Password reset email has been sent.");
+                Alert.alert("Die E-Mail zum zurücksetzen ihres Passworts wurde verschickt.");
             }, (error) => {
                 Alert.alert(error.message);
             });
@@ -35,7 +35,7 @@ export default class ForgotPasswordScreen extends React.Component {
         return (
             <View style={{paddingTop:50, alignItems:"center"}}>
 
-                <Text>Forgot Password</Text>
+                <Text>Passwort vergessen</Text>
 
                 <TextInput style={styles.input}
                     value={this.state.email}
@@ -46,8 +46,8 @@ export default class ForgotPasswordScreen extends React.Component {
                     autoCorrect={false}
                 />
 
-                <Button style={styles.button} mode='contained' title="Reset Password" onPress={this.onResetPasswordPress} >Reset Password</Button>
-                <Button style={styles.button} mode='contained' title="Back to Login..." onPress={this.onBackToLoginPress} >Back to Login...</Button>
+                <Button style={styles.button} mode='contained' title="Passwort zurücksetzen" onPress={this.onResetPasswordPress} >Passwort zurücksetzen</Button>
+                <Button style={styles.button} mode='contained' title="Zurück zu Anmeldung" onPress={this.onBackToLoginPress} >Zurück zu Anmeldung</Button>
             </View>
         );
     }

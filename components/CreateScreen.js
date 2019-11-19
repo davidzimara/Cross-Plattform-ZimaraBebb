@@ -1,11 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, AsyncStorage} from 'react-native';
+import {Alert, StyleSheet, Text, View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
-import * as  SQLite from "expo-sqlite";
 import * as firebase from 'firebase';
-
-
-const database = SQLite.openDatabase('my_storage.db');
 
 export default class CreateScreen extends Component {
 
@@ -18,8 +14,19 @@ export default class CreateScreen extends Component {
     }
 
     componentDidMount() {
-        const ref = firebase.database().ref('Categorys');
+        const {navigation} = this.props;
+        this.focusListener = navigation.addListener('didFocus', () => {
+            this._getCategories();
+        });
+    }
 
+    componentWillUnmount() {
+        // Remove the event listener
+        this.focusListener.remove();
+    }
+
+    _getCategories = () => {
+        const ref = firebase.database().ref('Categorys');
         ref.once('value').then(function (snapshot) {
             const categories = [];
 
@@ -34,15 +41,23 @@ export default class CreateScreen extends Component {
             });
 
         }.bind(this));
-    }
+    };
 
     _save = () => {
         const {name} = this.state;
-        let id = firebase.database().ref('Categorys/').push().key.toString();
+
+        if (name == null) {
+            alert("Bitte geben sie einen Namen ein");
+            return;
+        }
+
+        let id = firebase.database().ref('Categorys').push().key.toString();
 
         firebase.database().ref('Categorys/').child(id).set({
             id: id,
             name: name
+        }).then(() => {
+            this._getCategories();
         });
     };
 
