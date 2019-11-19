@@ -7,7 +7,7 @@ import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import * as firebase from 'firebase';
 import ApiKeys from './constants/ApiKeys';
 import RootNavigation from './navigation/RootNavigation';
-import DetailScreen from './components/DetailScreen';
+import CreateQuestionScreen from './components/CreateQuestionScreen';
 import HomeScreen from './components/HomeScreen';
 import CategoriesScreen from "./components/CategoriesScreen";
 import CreateScreen from "./components/CreateScreen";
@@ -18,7 +18,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 // definiere Stack-Navigator
 const stackNavigator = createStackNavigator({
     home: HomeScreen,
-    detail: DetailScreen
+    createQuestion: CreateQuestionScreen
 });
 
 // definiere navigationsziele für Bottom-Tab als JS-Objekt

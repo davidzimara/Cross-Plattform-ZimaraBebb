@@ -5,15 +5,12 @@ import * as firebase from "firebase";
 
 export default class CategoriesScreen extends Component {
 
-
     constructor(props) {
         super(props);
-        this.names = '';
         this.state = {
             categories: []
         }
     }
-
 
     componentDidMount() {
         const ref = firebase.database().ref('Categorys');
@@ -37,7 +34,6 @@ export default class CategoriesScreen extends Component {
 
     render() {
 
-        console.log(this.state.categories);
         return (
             <View style={styles.container}>
                 <Text>Kategories</Text>

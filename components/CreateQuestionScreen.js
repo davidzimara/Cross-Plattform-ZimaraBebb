@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function DetailScreen() {
+export default function CreateQuestionScreen(props) {
   return (
     <View style={styles.container}>
-      <Text>DETAIL IM STACK</Text>
+      <Text>Frage zu der Kategorie {props.navigation.getParam('category').name} erstellen</Text>
     </View>
   );
 }
