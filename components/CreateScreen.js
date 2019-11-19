@@ -27,6 +27,7 @@ export default class CreateScreen extends Component {
 
     _getCategories = () => {
         const ref = firebase.database().ref('Categorys');
+
         ref.once('value').then(function (snapshot) {
             const categories = [];
 

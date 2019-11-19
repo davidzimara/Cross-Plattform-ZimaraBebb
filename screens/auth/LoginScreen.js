@@ -69,8 +69,8 @@ export default class LoginScreen extends React.Component {
                 />
 
                 <Button mode='contained' style={styles.button} title="Anmeldung" onPress={this.onLoginPress}>Anmeldung</Button>
-                <Button mode='contained' style={styles.button} title="Account erstellen"
-                        onPress={this.onCreateAccountPress}>Account erstellen</Button>
+                <Button mode='contained' style={styles.button} title="Registrieren"
+                        onPress={this.onCreateAccountPress}>Registrieren</Button>
                 <Button mode='contained' style={styles.button} title="Passwort vergessen"
                         onPress={this.onForgotPasswordPress}>Passwort vergessen</Button>
             </View>
@@ -80,10 +80,10 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     input: {
-        width: 200, height: 60,  marginBottom: 10
+        width: 250, height: 60,  marginBottom: 10
     },
     button: {
         marginBottom: 10,
-        width: 200
+        width: 250
     }
 });

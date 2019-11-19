@@ -82,7 +82,7 @@ export default class SignupScreen extends React.Component {
 
                 <Button style={styles.button} mode='contained' title="Registrieren" onPress={this.onSignupPress}>Registrieren</Button>
 
-                <Button style={styles.button} mode='contained' title="zurück zum Login" onPress={this.onBackToLoginPress}>zurück zum Login</Button>
+                <Button style={styles.button} mode='contained' title="zum Login" onPress={this.onBackToLoginPress}>zum Login</Button>
             </View>
         );
     }
@@ -90,10 +90,10 @@ export default class SignupScreen extends React.Component {
 
 const styles = StyleSheet.create({
     input: {
-        width: 200, height: 60,  marginBottom: 10
+        width: 250, height: 60,  marginBottom: 10
     },
     button: {
         marginBottom: 10,
-        width: 200
+        width: 250
     }
 });
