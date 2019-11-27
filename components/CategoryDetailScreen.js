@@ -131,13 +131,14 @@ export default class CategoryDetailScreen extends Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>Fragen zu der Kategorie ....</Text>
+                <Text style={styles.header}>Fragen zu der Kategorie {this.props.navigation.getParam('category').name}</Text>
                 {
                     this.state.questions.map((question, key) => (
-                            <View key={key}>
-                                <View style={styles.category}>
+                            <View style={styles.wrapper} key={key}>
+                                <View style={styles.categoryFirst}>
 
                                     <Text style={styles.text}> {question.question} </Text>
+                                    <View style={styles.categoryFirstIcon}>
                                     <IconComponent style={styles.icons}
                                                    onPress={() => this._editAlert(question.id, 'question')}
                                                    name={'md-create'} size={25}
@@ -145,9 +146,10 @@ export default class CategoryDetailScreen extends Component {
                                     <IconComponent style={styles.icons} onPress={() => this._delete(question.id)}
                                                    name={'md-remove-circle-outline'}
                                                    size={25} color={'tomato'}/>
+                                    </View>
                                 </View>
                                 <View style={styles.category}>
-                                    <Text style={styles.text}> {question.answer1} </Text>
+                                    <Text style={[styles.text, styles.answer]}> {question.answer1} </Text>
                                     <IconComponent style={styles.icons}
                                                    onPress={() => this._editAlert(question.id, 'answer1')}
                                                    name={'md-create'} size={25}
@@ -220,6 +222,13 @@ const styles = StyleSheet.create({
     input: {
         height: 60, marginBottom: 10
     },
+    categoryFirst: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    categoryFirstIcon: {
+        flexDirection: 'row',
+    },
     category: {
         flexDirection: 'row',
         borderTopColor: 'tomato',
@@ -227,7 +236,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     text: {
-        fontSize: 18
+        fontSize: 18,
+        flex: 1
+    },
+    answer: {
+        color: 'green'
     },
     header: {
         marginBottom: 25,
@@ -235,5 +248,13 @@ const styles = StyleSheet.create({
     },
     icons: {
         marginLeft: 10
+    },
+    wrapper: {
+        width: '80%',
+        marginBottom: 25,
+        borderTopColor: 'grey',
+        borderTopWidth: 2,
+        borderBottomColor: 'grey',
+        borderBottomWidth: 2
     }
 });

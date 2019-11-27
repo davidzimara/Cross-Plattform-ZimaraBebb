@@ -93,11 +93,17 @@ export default class CategoriesScreen extends Component {
                 {
                     this.state.categories.map((category, key) => (
                             <View key={key} style={styles.category}>
-                                <Button onPress={() => this.props.navigation.navigate('categoryDetail', {category: category})} style={styles.text}> {category.name} </Button>
-                                <IconComponent style={styles.icons} onPress={() => this._editAlert(category.id)} name={'md-create'} size={25}
-                                               color={'tomato'}/>
-                                <IconComponent style={styles.icons} onPress={() => this._delete(category.id)} name={'md-remove-circle-outline'}
-                                               size={25} color={'tomato'}/>
+                                <Button
+                                    onPress={() => this.props.navigation.navigate('categoryDetail', {category: category})}
+                                    style={styles.text}> {category.name} </Button>
+                                <View style={styles.iconWrapper}>
+                                    <IconComponent style={styles.icons} onPress={() => this._editAlert(category.id)}
+                                                   name={'md-create'} size={25}
+                                                   color={'tomato'}/>
+                                    <IconComponent style={styles.icons} onPress={() => this._delete(category.id)}
+                                                   name={'md-remove-circle-outline'}
+                                                   size={25} color={'tomato'}/>
+                                </View>
                             </View>
                         )
                     )
@@ -146,16 +152,23 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         borderTopColor: 'tomato',
         borderTopWidth: 1,
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        width: '80%'
+    },
+    iconWrapper: {
+        flexDirection: 'row'
     },
     text: {
-        fontSize: 18
+        fontSize: 18,
+        flexWrap: 'wrap',
+        flex: 1,
+        flexDirection: 'row'
     },
     header: {
         marginBottom: 25,
         fontSize: 25
     },
     icons: {
-        marginLeft: 10
+        marginRight: 10
     }
 });

@@ -11,6 +11,8 @@ import CreateQuestionScreen from './components/CreateQuestionScreen';
 import HomeScreen from './components/HomeScreen';
 import CategoriesScreen from "./components/CategoriesScreen";
 import CategoryDetailScreen from "./components/CategoryDetailScreen";
+import ChooseCategoryScreen from "./components/ChooseCategoryScreen";
+import PlayScreen from "./components/PlayScreen";
 import CreateScreen from "./components/CreateScreen";
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -28,9 +30,15 @@ const categoryStackNavigator = createStackNavigator({
     categoryDetail: CategoryDetailScreen
 });
 
+const playStackNavigator = createStackNavigator({
+    home: HomeScreen,
+    chooseCategory: ChooseCategoryScreen,
+    play: PlayScreen,
+});
+
 // definiere navigationsziele für Bottom-Tab als JS-Objekt
 const destinations = {
-    Home: HomeScreen,
+    Home: playStackNavigator,
     Erstellen: stackNavigator,
     Kategorien: categoryStackNavigator
 };
