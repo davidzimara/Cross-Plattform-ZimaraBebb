@@ -66,23 +66,23 @@ export default class CategoryDetailScreen extends Component {
             return false;
         }
 
-        if (fieldName == 'question') {
+        if (fieldName === 'question') {
             ref.update({
                 question: this.state.fieldValue
             });
-        } else if (fieldName == 'answer1') {
+        } else if (fieldName === 'answer1') {
             ref.update({
                 answer1: this.state.fieldValue
             });
-        } else if (fieldName == 'answer2') {
+        } else if (fieldName === 'answer2') {
             ref.update({
                 answer2: this.state.fieldValue
             });
-        } else if (fieldName == 'answer3') {
+        } else if (fieldName === 'answer3') {
             ref.update({
                 answer3: this.state.fieldValue
             });
-        } else if (fieldName == 'answer4') {
+        } else if (fieldName === 'answer4') {
             ref.update({
                 answer4: this.state.fieldValue
             });

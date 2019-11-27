@@ -44,7 +44,6 @@ export default class CreateQuestionScreen extends Component {
     }
 
     render() {
-
         return (
             <View style={styles.container}>
                 <Text style={styles.spacer}>Frage zu der
