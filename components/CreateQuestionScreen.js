@@ -32,6 +32,7 @@ export default class CreateQuestionScreen extends Component {
 
         firebase.database().ref('Categorys/' + categoryId + '/questions').child(id).set({
             id: id,
+            categoryId: categoryId,
             question: this.state.question,
             answer1: this.state.answer1,
             answer2: this.state.answer2,
