@@ -57,7 +57,6 @@ export default class CategoryDetailScreen extends Component {
 
 
     render() {
-        let IconComponent = Ionicons;
 
 
         return (
