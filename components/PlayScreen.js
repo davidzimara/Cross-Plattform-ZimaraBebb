@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, ScrollView} from 'react-native';
 import {Button, Dialog, Portal, TextInput} from 'react-native-paper';
 import * as firebase from "firebase";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -60,9 +60,9 @@ export default class CategoryDetailScreen extends Component {
 
 
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
 
-            </View>
+            </ScrollView>
         );
     }
 

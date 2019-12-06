@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, Alert} from 'react-native';
+import {StyleSheet, ScrollView, Text, Alert} from 'react-native';
 import {NavigationActions, StackActions} from 'react-navigation';
 import * as firebase from 'firebase';
 import {Button, TextInput} from 'react-native-paper';
@@ -40,7 +40,7 @@ export default class LoginScreen extends React.Component {
 
     render() {
         return (
-            <View style={{paddingTop: 50, alignItems: "center"}}>
+            <ScrollView contentContainerStyle={{paddingTop: 50, alignItems: "center"}}>
 
                 <Text>Anmeldung</Text>
 
@@ -55,7 +55,7 @@ export default class LoginScreen extends React.Component {
                            autoCorrect={false}
                 />
 
-                <View style={{paddingTop: 10}}/>
+                <ScrollView contentContainerStyle={{paddingTop: 10}}/>
 
                 <TextInput style={styles.input}
                            value={this.state.password}
@@ -73,7 +73,7 @@ export default class LoginScreen extends React.Component {
                         onPress={this.onCreateAccountPress}>Registrieren</Button>
                 <Button mode='contained' style={styles.button} title="Passwort vergessen"
                         onPress={this.onForgotPasswordPress}>Passwort vergessen</Button>
-            </View>
+            </ScrollView>
         );
     }
 }

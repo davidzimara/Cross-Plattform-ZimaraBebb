@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {Button, Dialog, Portal, TextInput} from 'react-native-paper';
 import * as firebase from "firebase";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -130,7 +130,7 @@ export default class CategoryDetailScreen extends Component {
 
 
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.header}>Fragen zu der Kategorie {this.props.navigation.getParam('category').name}</Text>
                 {
                     this.state.questions.map((question, key) => (
@@ -176,8 +176,6 @@ export default class CategoryDetailScreen extends Component {
                                                    name={'md-create'} size={25}
                                                    color={'tomato'}/>
                                 </View>
-
-
                             </View>
                         )
                     )
@@ -203,7 +201,7 @@ export default class CategoryDetailScreen extends Component {
                         </Dialog.Actions>
                     </Dialog>
                 </Portal>
-            </View>
+            </ScrollView>
         );
     }
 
@@ -243,6 +241,7 @@ const styles = StyleSheet.create({
         color: 'green'
     },
     header: {
+        width: '80%',
         marginBottom: 25,
         fontSize: 25
     },

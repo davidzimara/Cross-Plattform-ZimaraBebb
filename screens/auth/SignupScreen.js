@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Text, Alert} from 'react-native';
+import {StyleSheet, ScrollView, Text, Alert} from 'react-native';
 import {NavigationActions, StackActions} from 'react-navigation';
 import * as firebase from 'firebase';
 import {Button, TextInput} from 'react-native-paper';
@@ -39,7 +39,7 @@ export default class SignupScreen extends React.Component {
 
     render() {
         return (
-            <View style={{paddingTop: 50, alignItems: "center"}}>
+            <ScrollView contentContainerStyle={{paddingTop: 50, alignItems: "center"}}>
 
                 <Text>Registrierung</Text>
 
@@ -54,7 +54,7 @@ export default class SignupScreen extends React.Component {
                            autoCorrect={false}
                 />
 
-                <View style={{paddingTop: 10}}/>
+                <ScrollView contentContainerStyle={{paddingTop: 10}}/>
 
                 <TextInput style={styles.input}
                            value={this.state.password}
@@ -67,7 +67,7 @@ export default class SignupScreen extends React.Component {
                            autoCorrect={false}
                 />
 
-                <View style={{paddingTop: 10}}/>
+                <ScrollView contentContainerStyle={{paddingTop: 10}}/>
 
                 <TextInput style={styles.input}
                            value={this.state.passwordConfirm}
@@ -83,7 +83,7 @@ export default class SignupScreen extends React.Component {
                 <Button style={styles.button} mode='contained' title="Registrieren" onPress={this.onSignupPress}>Registrieren</Button>
 
                 <Button style={styles.button} mode='contained' title="zum Login" onPress={this.onBackToLoginPress}>zum Login</Button>
-            </View>
+            </ScrollView>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {Button, Dialog, Portal, TextInput} from 'react-native-paper';
 import * as firebase from "firebase";
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -88,7 +88,7 @@ export default class CategoriesScreen extends Component {
 
 
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.header}>Kategorien</Text>
                 {
                     this.state.categories.map((category, key) => (
@@ -96,10 +96,12 @@ export default class CategoriesScreen extends Component {
                                 <Button
                                     onPress={() => this.props.navigation.navigate('categoryDetail', {category: category})}
                                     style={styles.text}> {category.name} </Button>
-                                <View style={styles.iconWrapper}>
+                                <View>
                                     <IconComponent style={styles.icons} onPress={() => this._editAlert(category.id)}
                                                    name={'md-create'} size={25}
                                                    color={'tomato'}/>
+                                </View>
+                                <View>
                                     <IconComponent style={styles.icons} onPress={() => this._delete(category.id)}
                                                    name={'md-remove-circle-outline'}
                                                    size={25} color={'tomato'}/>
@@ -129,7 +131,7 @@ export default class CategoriesScreen extends Component {
                         </Dialog.Actions>
                     </Dialog>
                 </Portal>
-            </View>
+            </ScrollView>
         );
     }
 
@@ -154,9 +156,6 @@ const styles = StyleSheet.create({
         borderTopWidth: 1,
         justifyContent: 'space-between',
         width: '80%'
-    },
-    iconWrapper: {
-        flexDirection: 'row'
     },
     text: {
         fontSize: 18,

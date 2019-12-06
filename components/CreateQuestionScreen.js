@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, ScrollView} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import * as firebase from "firebase";
 
@@ -45,7 +45,7 @@ export default class CreateQuestionScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.spacer}>Frage zu der
                     Kategorie {this.props.navigation.getParam('category').name} erstellen</Text>
                 <TextInput
@@ -64,7 +64,7 @@ export default class CreateQuestionScreen extends Component {
                     value={this.state.answer4} label='Antwort4' style={styles.input}
                     onChangeText={text => this.setState({answer4: text})}/>
                 <Button style={styles.button} mode='contained' onPress={() => this._save()}>Speichern</Button>
-            </View>
+            </ScrollView>
         );
     }
 

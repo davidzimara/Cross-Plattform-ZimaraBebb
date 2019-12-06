@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, View, Text, Alert } from 'react-native';
+import { StyleSheet, ScrollView, Text, Alert } from 'react-native';
 import { NavigationActions, StackActions } from 'react-navigation';
 import * as firebase from 'firebase';
 import {Button, TextInput} from 'react-native-paper';
@@ -33,7 +33,7 @@ export default class ForgotPasswordScreen extends React.Component {
 
     render() {
         return (
-            <View style={{paddingTop:50, alignItems:"center"}}>
+            <ScrollView contentContainerStyle={{paddingTop:50, alignItems:"center"}}>
 
                 <Text>Passwort vergessen</Text>
 
@@ -48,7 +48,7 @@ export default class ForgotPasswordScreen extends React.Component {
 
                 <Button style={styles.button} mode='contained' title="Passwort zurücksetzen" onPress={this.onResetPasswordPress} >Passwort zurücksetzen</Button>
                 <Button style={styles.button} mode='contained' title="Zurück zu Anmeldung" onPress={this.onBackToLoginPress} >Zurück zu Anmeldung</Button>
-            </View>
+            </ScrollView>
         );
     }
 }

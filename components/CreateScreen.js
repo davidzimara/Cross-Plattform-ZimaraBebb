@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Text, View} from 'react-native';
+import {Alert, StyleSheet, Text, ScrollView} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import * as firebase from 'firebase';
 
@@ -65,7 +65,7 @@ export default class CreateScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.spacer}>Kategorie Erstellen</Text>
                 <TextInput value={this.state.name} label="Kategorie Name" style={styles.spacer}
                            onChangeText={text => this.setState({name: text})}/>
@@ -81,7 +81,7 @@ export default class CreateScreen extends Component {
                                 key={key}> {category.name} </Button>
                     ))
                 }
-            </View>
+            </ScrollView>
         );
     }
 
