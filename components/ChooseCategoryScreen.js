@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, ScrollView} from 'react-native';
+import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {Button} from 'react-native-paper';
 import * as firebase from "firebase";
 
@@ -55,11 +55,11 @@ export default class CategoryDetailScreen extends Component {
                 <Text style={styles.header}>Wählen Sie eine Kategorie aus </Text>
                 {
                     this.state.categories.map((category, key) => (
-                            <ScrollView key={key} style={styles.category}>
+                            <View key={key} style={styles.category}>
                                 <Button
                                     onPress={() => this.props.navigation.navigate('play', {category: category})}
                                     style={styles.text}> {category.name} </Button>
-                            </ScrollView>
+                            </View>
                         )
                     )
                 }
