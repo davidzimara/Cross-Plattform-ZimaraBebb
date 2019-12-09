@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, ScrollView, View} from 'react-native';
-import {Button, Dialog, Portal, TextInput} from 'react-native-paper';
+import {StyleSheet, Text, View} from 'react-native';
+import {Button} from 'react-native-paper';
 import * as firebase from "firebase";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Answers from "./Answers";
 
 
 export default class CategoryDetailScreen extends Component {
@@ -12,10 +12,6 @@ export default class CategoryDetailScreen extends Component {
         this.state = {
             questions: [],
             currentQuestion: 0,
-            answerClicked: false,
-            rightAnswer: false,
-            shuffled: false,
-            shuffledArray: []
         };
     }
 
@@ -56,27 +52,9 @@ export default class CategoryDetailScreen extends Component {
     }
 
 
-    _checkAnswer(rightAnswer) {
-        this.setState({
-            answerClicked: true
-        });
-
-        if (rightAnswer) {
-            this.setState({
-                rightAnswer: true
-            })
-        }
-    };
-
     _nextQuestion = () => {
         // gehe zur nächsten Frage
         const nextQuestion = this.state.currentQuestion + 1;
-        this.setState({
-            answerClicked: false,
-            shuffled: false,
-            rightAnswer: false,
-            shuffledArray: []
-        });
         // überprüfe, ob letzte Frage erreicht
         if (nextQuestion === this.state.questions.length) {
             this.setState({currentQuestion: -1});
@@ -85,26 +63,10 @@ export default class CategoryDetailScreen extends Component {
         }
     };
 
-    _shuffle(a) {
-        let j, x, i;
-        for (i = a.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = a[i];
-            a[i] = a[j];
-            a[j] = x;
-        }
-
-        this.setState({
-            shuffledArray: a,
-            shuffled: true
-        });
-
-        //return a;
-    }
 
     render() {
         const {questions, currentQuestion} = this.state;
-        // TODO: Fall behandeln, dass Daten aus Firebase geladen werden
+
         if (questions.length === 0)
             return (
                 <View style={styles.container}>
@@ -119,39 +81,20 @@ export default class CategoryDetailScreen extends Component {
                 </View>
             );
 
-        console.log(this.state.answerClicked);
-
-        let questionArray = [
-            (<View key={1} style={[styles.answer, {backgroundColor: this.state.answerClicked ? 'green' : 'yellow'}]}
-                   onTouchEnd={() => this._checkAnswer(true)}><Text
-                style={{fontSize: styles.text.fontSize}}>{questions[currentQuestion].answer1}</Text></View>),
-            (<View key={2} style={[styles.answer, {backgroundColor: this.state.answerClicked ? 'red' : 'yellow'}]}
-                   onTouchEnd={() => this._checkAnswer(false)}><Text
-                style={{fontSize: styles.text.fontSize}}>{questions[currentQuestion].answer2}</Text></View>),
-            (<View key={3} style={[styles.answer, {backgroundColor: this.state.answerClicked ? 'red' : 'yellow'}]}
-                   onTouchEnd={() => this._checkAnswer(false)}><Text
-                style={{fontSize: styles.text.fontSize}}>{questions[currentQuestion].answer3}</Text></View>),
-            (<View key={4} style={[styles.answer, {backgroundColor: this.state.answerClicked ? 'red' : 'yellow'}]}
-                   onTouchEnd={() => this._checkAnswer(false)}><Text
-                style={{fontSize: styles.text.fontSize}}>{questions[currentQuestion].answer4}</Text></View>)
+        let answers = [
+            questions[currentQuestion].answer1,
+            questions[currentQuestion].answer2,
+            questions[currentQuestion].answer3,
+            questions[currentQuestion].answer4
         ];
-
-        let shuffledQuestion = this.state.shuffled ? this.state.shuffledArray : this._shuffle(questionArray);
-
+        const question = {...questions[currentQuestion], answers: answers};
+        const AnswerElement = () => {
+            return (<Answers nextQuestion={() => this._nextQuestion()}
+                             question={question}/>)
+        };
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>{questions[currentQuestion].question}</Text>
-                <View style={styles.answerWrapper}>
-                    {shuffledQuestion}
-                </View>
-
-                <View style={[{display: this.state.answerClicked ? 'flex' : 'none'}, styles.feedback]}>
-                    <Text style={{color: 'tomato', fontSize: 20, textAlign: 'center'}}>
-                        {this.state.rightAnswer ? 'Richtig!' : 'Falsch!'}
-                    </Text>
-                </View>
-                <Button mode='contained' style={{display: this.state.answerClicked ? 'flex' : 'none'}}
-                        onPress={this._nextQuestion}>Nächste Frage</Button>
+                <AnswerElement/>
             </View>
         );
     }
@@ -173,18 +116,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    answerWrapper: {
-        flexDirection: "row",
-        justifyContent: 'space-around',
-        flexWrap: 'wrap'
-    },
-    answer: {
-        width: '48%',
-        borderRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
-        marginBottom: 10,
     }
 });
