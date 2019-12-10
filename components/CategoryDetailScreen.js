@@ -6,7 +6,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 export default class CategoryDetailScreen extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -21,19 +20,17 @@ export default class CategoryDetailScreen extends Component {
     }
 
     componentDidMount() {
-
         const {navigation} = this.props;
+
         this.focusListener = navigation.addListener('didFocus', () => {
             this._updateQuestionsShown();
         });
     }
 
-
     componentWillUnmount() {
         // Remove the event listener
         this.focusListener.remove();
     }
-
 
     _updateQuestionsShown() {
         let categoryId = this.props.navigation.getParam('category').id;
@@ -49,6 +46,7 @@ export default class CategoryDetailScreen extends Component {
                 questions.push(temp);
                 return false;
             });
+
             //PASSING VARIABLE TO STATE
             this.setState({
                 questions: questions
@@ -128,24 +126,23 @@ export default class CategoryDetailScreen extends Component {
     render() {
         let IconComponent = Ionicons;
 
-
         return (
             <ScrollView contentContainerStyle={styles.container}>
-                <Text style={styles.header}>Fragen zu der Kategorie {this.props.navigation.getParam('category').name}</Text>
+                <Text style={styles.header}>Fragen zu der
+                    Kategorie {this.props.navigation.getParam('category').name}</Text>
                 {
                     this.state.questions.map((question, key) => (
                             <View style={styles.wrapper} key={key}>
                                 <View style={styles.categoryFirst}>
-
                                     <Text style={styles.text}> {question.question} </Text>
                                     <View style={styles.categoryFirstIcon}>
-                                    <IconComponent style={styles.icons}
-                                                   onPress={() => this._editAlert(question.id, 'question')}
-                                                   name={'md-create'} size={25}
-                                                   color={'tomato'}/>
-                                    <IconComponent style={styles.icons} onPress={() => this._delete(question.id)}
-                                                   name={'md-remove-circle-outline'}
-                                                   size={25} color={'tomato'}/>
+                                        <IconComponent style={styles.icons}
+                                                       onPress={() => this._editAlert(question.id, 'question')}
+                                                       name={'md-create'} size={25}
+                                                       color={'tomato'}/>
+                                        <IconComponent style={styles.icons} onPress={() => this._delete(question.id)}
+                                                       name={'md-remove-circle-outline'}
+                                                       size={25} color={'tomato'}/>
                                     </View>
                                 </View>
                                 <View style={styles.category}>
@@ -214,9 +211,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    spacer: {
-        marginBottom: 5,
-    },
     input: {
         height: 60, marginBottom: 10
     },
@@ -236,9 +230,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         flex: 1
-    },
-    answer: {
-        color: 'green'
     },
     header: {
         width: '80%',

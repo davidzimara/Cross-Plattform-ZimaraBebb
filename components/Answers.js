@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Button} from "react-native-paper";
 
-
 export default class Answers extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -15,7 +13,6 @@ export default class Answers extends Component {
 
     componentDidMount() {
         let answersArray = this.props.question.answers;
-
 
         let answerObjects = answersArray.map((answer, i) => {
             return {answer: answer, right: i === 0}
@@ -49,15 +46,14 @@ export default class Answers extends Component {
     };
 
     render() {
-        console.log(this.state.answerClicked)
         return (
             <View>
                 <Text style={styles.text}>{this.props.question.question}</Text>
                 <View style={styles.answerWrapper}>
-
                     {this.props.question.answers.map((question, i) => {
                         return (
-                            <View key={i} style={[styles.answer, {backgroundColor: this.state.answerClicked ? (question.right ? 'green':'red') : 'yellow'}]}
+                            <View key={i}
+                                  style={[styles.answer, {backgroundColor: this.state.answerClicked ? (question.right ? 'green' : 'red') : 'yellow'}]}
                                   onTouchEnd={() => this._checkAnswer(question.right)}><Text
                                 style={{fontSize: styles.text.fontSize}}>{question.answer}</Text></View>
                         )
@@ -87,12 +83,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginBottom: 10,
     },
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
     answerWrapper: {
         flexDirection: "row",
         justifyContent: 'space-around',
@@ -107,4 +97,3 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     }
 });
-

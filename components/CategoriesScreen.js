@@ -4,9 +4,7 @@ import {Button, Dialog, Portal, TextInput} from 'react-native-paper';
 import * as firebase from "firebase";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-
 export default class CategoriesScreen extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -18,8 +16,8 @@ export default class CategoriesScreen extends Component {
     }
 
     componentDidMount() {
-
         const {navigation} = this.props;
+
         this.focusListener = navigation.addListener('didFocus', () => {
             this._updateCategoriesShown();
         });
@@ -37,11 +35,11 @@ export default class CategoriesScreen extends Component {
                 categories.push(temp);
                 return false;
             });
+
             //PASSING VARIABLE TO STATE
             this.setState({
                 categories: categories
             });
-
         }.bind(this));
     }
 
@@ -75,9 +73,7 @@ export default class CategoriesScreen extends Component {
     _editAlert(id) {
         this.setState({id: id});
         this._showDialog()
-
     }
-
 
     _showDialog = () => this.setState({visible: true});
 
@@ -85,7 +81,6 @@ export default class CategoriesScreen extends Component {
 
     render() {
         let IconComponent = Ionicons;
-
 
         return (
             <ScrollView contentContainerStyle={styles.container}>
@@ -122,8 +117,7 @@ export default class CategoriesScreen extends Component {
                                 onChangeText={(text) => {
                                     this.setState({name: text})
                                 }}
-                                label="Name"
-                            />
+                                label="Name"/>
                         </Dialog.Content>
                         <Dialog.Actions>
                             <Button onPress={() => this._hideDialog()}>Abbrechen</Button>
@@ -134,7 +128,6 @@ export default class CategoriesScreen extends Component {
             </ScrollView>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -143,9 +136,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    spacer: {
-        marginBottom: 5,
     },
     input: {
         height: 60, marginBottom: 10

@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Text, ScrollView} from 'react-native';
+import {StyleSheet, Text, ScrollView} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import * as firebase from 'firebase';
 
 export default class CreateScreen extends Component {
-
     constructor(props) {
         super(props);
         this.name = '';
@@ -15,6 +14,7 @@ export default class CreateScreen extends Component {
 
     componentDidMount() {
         const {navigation} = this.props;
+
         this.focusListener = navigation.addListener('didFocus', () => {
             this._getCategories();
         });
@@ -62,18 +62,14 @@ export default class CreateScreen extends Component {
         });
     };
 
-
     render() {
         return (
             <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.spacer}>Kategorie Erstellen</Text>
                 <TextInput value={this.state.name} label="Kategorie Name" style={styles.spacer}
                            onChangeText={text => this.setState({name: text})}/>
-                <Button onPress={this._save} title='Speichern' mode='contained' style={styles.button}
-                >Speichern</Button>
-
+                <Button onPress={this._save} title='Speichern' mode='contained' style={styles.button}>Speichern</Button>
                 <Text style={styles.spacer}>Frage zu einer Kategorie Erstellen:</Text>
-
                 {
                     this.state.categories.map((category, key) => (
                         <Button style={styles.spacer} mode="outlined"

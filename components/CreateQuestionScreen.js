@@ -3,9 +3,7 @@ import {StyleSheet, Text, ScrollView} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import * as firebase from "firebase";
 
-
 export default class CreateQuestionScreen extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -19,7 +17,6 @@ export default class CreateQuestionScreen extends Component {
     _save() {
         let categoryId = this.props.navigation.getParam('category').id;
         let id = firebase.database().ref('Categorys/' + categoryId).push().key.toString();
-
 
         if (this.state.question === '' ||
             this.state.answer1 === '' ||
@@ -67,7 +64,6 @@ export default class CreateQuestionScreen extends Component {
             </ScrollView>
         );
     }
-
 }
 
 const styles = StyleSheet.create({

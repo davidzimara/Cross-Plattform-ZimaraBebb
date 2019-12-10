@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Button} from 'react-native-paper';
 import * as firebase from "firebase";
 import Answers from "./Answers";
 
-
 export default class CategoryDetailScreen extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -17,6 +14,7 @@ export default class CategoryDetailScreen extends Component {
 
     componentDidMount() {
         const {navigation} = this.props;
+
         this.focusListener = navigation.addListener('didFocus', () => {
             this._updateQuestionsShown();
         });
@@ -27,7 +25,6 @@ export default class CategoryDetailScreen extends Component {
         // Remove the event listener
         this.focusListener.remove();
     }
-
 
     _updateQuestionsShown() {
         let categoryId = this.props.navigation.getParam('category').id;
@@ -51,7 +48,6 @@ export default class CategoryDetailScreen extends Component {
         }.bind(this));
     }
 
-
     _nextQuestion = () => {
         // gehe zur nächsten Frage
         const nextQuestion = this.state.currentQuestion + 1;
@@ -62,7 +58,6 @@ export default class CategoryDetailScreen extends Component {
             this.setState({currentQuestion: nextQuestion});
         }
     };
-
 
     render() {
         const {questions, currentQuestion} = this.state;
@@ -87,11 +82,13 @@ export default class CategoryDetailScreen extends Component {
             questions[currentQuestion].answer3,
             questions[currentQuestion].answer4
         ];
+
         const question = {...questions[currentQuestion], answers: answers};
         const AnswerElement = () => {
             return (<Answers nextQuestion={() => this._nextQuestion()}
                              question={question}/>)
         };
+
         return (
             <View style={styles.container}>
                 <AnswerElement/>
@@ -101,16 +98,6 @@ export default class CategoryDetailScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-    feedback: {
-        fontSize: 18,
-        textAlign: 'center',
-        marginBottom: 10,
-    },
-    text: {
-        fontSize: 24,
-        textAlign: 'center',
-        marginBottom: 10,
-    },
     container: {
         flex: 1,
         backgroundColor: '#fff',

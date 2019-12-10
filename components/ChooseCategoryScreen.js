@@ -3,9 +3,7 @@ import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {Button} from 'react-native-paper';
 import * as firebase from "firebase";
 
-
 export default class CategoryDetailScreen extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -15,17 +13,16 @@ export default class CategoryDetailScreen extends Component {
 
     componentDidMount() {
         const {navigation} = this.props;
+
         this.focusListener = navigation.addListener('didFocus', () => {
             this._updateCategoriesShown();
         });
     }
 
-
     componentWillUnmount() {
         // Remove the event listener
         this.focusListener.remove();
     }
-
 
     _updateCategoriesShown() {
         const ref = firebase.database().ref('Categorys');
@@ -39,17 +36,15 @@ export default class CategoryDetailScreen extends Component {
                 categories.push(temp);
                 return false;
             });
+
             //PASSING VARIABLE TO STATE
             this.setState({
                 categories: categories
             });
-
         }.bind(this));
     }
 
     render() {
-
-
         return (
             <ScrollView contentContainerStyle={styles.container}>
                 <Text style={styles.header}>Wählen Sie eine Kategorie aus </Text>
@@ -66,7 +61,6 @@ export default class CategoryDetailScreen extends Component {
             </ScrollView>
         );
     }
-
 }
 
 const styles = StyleSheet.create({
@@ -75,9 +69,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center'
-    },
-    spacer: {
-        marginBottom: 5,
     },
     category: {
         flexDirection: 'row',
@@ -93,8 +84,5 @@ const styles = StyleSheet.create({
     header: {
         marginBottom: 25,
         fontSize: 25
-    },
-    icons: {
-        marginRight: 10
     }
 });

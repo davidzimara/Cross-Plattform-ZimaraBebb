@@ -1,4 +1,3 @@
-import { Notifications } from 'expo';
 import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import HomeScreen from './../components/HomeScreen';
@@ -27,27 +26,8 @@ const RootStackNavigator =
 
 const Navigator = createAppContainer(RootStackNavigator);
 
-
 export default class RootNavigator extends React.Component {
-
-    componentDidMount() {
-        this._notificationSubscription = this._registerForPushNotifications();
-    }
-
-    componentWillUnmount() {
-        this._notificationSubscription && this._notificationSubscription.remove();
-    }
-
     render() {
         return <Navigator />;
     }
-
-    _registerForPushNotifications() {
-        // Watch for incoming notifications
-        this._notificationSubscription = Notifications.addListener(this._handleNotification);
-    }
-
-    _handleNotification = ({ origin, data }) => {
-        console.log(`Push notification ${origin} with data: ${JSON.stringify(data)}`);
-    };
 }
