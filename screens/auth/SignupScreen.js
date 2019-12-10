@@ -4,9 +4,7 @@ import {NavigationActions, StackActions} from 'react-navigation';
 import * as firebase from 'firebase';
 import {Button, TextInput} from 'react-native-paper';
 
-
 export default class SignupScreen extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -40,9 +38,7 @@ export default class SignupScreen extends React.Component {
     render() {
         return (
             <ScrollView contentContainerStyle={{paddingTop: 50, alignItems: "center"}}>
-
                 <Text>Registrierung</Text>
-
                 <TextInput style={styles.input}
                            value={this.state.email}
                            onChangeText={(text) => {
@@ -53,8 +49,6 @@ export default class SignupScreen extends React.Component {
                            autoCapitalize="none"
                            autoCorrect={false}
                 />
-
-                <ScrollView contentContainerStyle={{paddingTop: 10}}/>
 
                 <TextInput style={styles.input}
                            value={this.state.password}
@@ -67,8 +61,6 @@ export default class SignupScreen extends React.Component {
                            autoCorrect={false}
                 />
 
-                <ScrollView contentContainerStyle={{paddingTop: 10}}/>
-
                 <TextInput style={styles.input}
                            value={this.state.passwordConfirm}
                            onChangeText={(text) => {
@@ -80,9 +72,10 @@ export default class SignupScreen extends React.Component {
                            autoCorrect={false}
                 />
 
-                <Button style={styles.button} mode='contained' title="Registrieren" onPress={this.onSignupPress}>Registrieren</Button>
-
-                <Button style={styles.button} mode='contained' title="zum Login" onPress={this.onBackToLoginPress}>zum Login</Button>
+                <Button style={styles.button} mode='contained' title="Registrieren"
+                        onPress={this.onSignupPress}>Registrieren</Button>
+                <Button style={styles.button} mode='contained' title="zum Login" onPress={this.onBackToLoginPress}>zum
+                    Login</Button>
             </ScrollView>
         );
     }
@@ -90,7 +83,7 @@ export default class SignupScreen extends React.Component {
 
 const styles = StyleSheet.create({
     input: {
-        width: 250, height: 60,  marginBottom: 10
+        width: 250, height: 60, marginBottom: 10
     },
     button: {
         marginBottom: 10,

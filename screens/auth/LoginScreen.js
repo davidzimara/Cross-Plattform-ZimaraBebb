@@ -5,7 +5,6 @@ import * as firebase from 'firebase';
 import {Button, TextInput} from 'react-native-paper';
 
 export default class LoginScreen extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
@@ -41,9 +40,7 @@ export default class LoginScreen extends React.Component {
     render() {
         return (
             <ScrollView contentContainerStyle={{paddingTop: 50, alignItems: "center"}}>
-
                 <Text>Anmeldung</Text>
-
                 <TextInput style={styles.input}
                            value={this.state.email}
                            onChangeText={(text) => {
@@ -54,9 +51,6 @@ export default class LoginScreen extends React.Component {
                            autoCapitalize="none"
                            autoCorrect={false}
                 />
-
-                <ScrollView contentContainerStyle={{paddingTop: 10}}/>
-
                 <TextInput style={styles.input}
                            value={this.state.password}
                            onChangeText={(text) => {
@@ -67,8 +61,8 @@ export default class LoginScreen extends React.Component {
                            autoCapitalize="none"
                            autoCorrect={false}
                 />
-
-                <Button mode='contained' style={styles.button} title="Anmeldung" onPress={this.onLoginPress}>Anmeldung</Button>
+                <Button mode='contained' style={styles.button} title="Anmeldung"
+                        onPress={this.onLoginPress}>Anmeldung</Button>
                 <Button mode='contained' style={styles.button} title="Registrieren"
                         onPress={this.onCreateAccountPress}>Registrieren</Button>
                 <Button mode='contained' style={styles.button} title="Passwort vergessen"
@@ -80,7 +74,7 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     input: {
-        width: 250, height: 60,  marginBottom: 10
+        width: 250, height: 60, marginBottom: 10
     },
     button: {
         marginBottom: 10,
