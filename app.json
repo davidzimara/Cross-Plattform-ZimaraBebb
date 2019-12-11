@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "NavExample",
-    "slug": "NavExample",
+    "name": "ReactZimaraBebb",
+    "slug": "ReactZimaraBebb",
     "privacy": "public",
     "sdkVersion": "35.0.0",
     "platforms": ["ios", "android", "web"],
