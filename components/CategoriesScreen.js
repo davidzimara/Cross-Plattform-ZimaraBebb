@@ -83,48 +83,50 @@ export default class CategoriesScreen extends Component {
         let IconComponent = Ionicons;
 
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                <Text style={styles.header}>Kategorien</Text>
-                {
-                    this.state.categories.map((category, key) => (
-                            <View key={key} style={styles.category}>
-                                <Button
-                                    onPress={() => this.props.navigation.navigate('categoryDetail', {category: category})}
-                                    style={styles.text}> {category.name} </Button>
-                                <View>
-                                    <IconComponent style={styles.icons} onPress={() => this._editAlert(category.id)}
-                                                   name={'md-create'} size={25}
-                                                   color={'tomato'}/>
+            <ScrollView>
+                <View style={styles.container}>
+                    <Text style={styles.header}>Kategorien</Text>
+                    {
+                        this.state.categories.map((category, key) => (
+                                <View key={key} style={styles.category}>
+                                    <Button
+                                        onPress={() => this.props.navigation.navigate('categoryDetail', {category: category})}
+                                        style={styles.text}> {category.name} </Button>
+                                    <View>
+                                        <IconComponent style={styles.icons} onPress={() => this._editAlert(category.id)}
+                                                       name={'md-create'} size={25}
+                                                       color={'tomato'}/>
+                                    </View>
+                                    <View>
+                                        <IconComponent style={styles.icons} onPress={() => this._delete(category.id)}
+                                                       name={'md-remove-circle-outline'}
+                                                       size={25} color={'tomato'}/>
+                                    </View>
                                 </View>
-                                <View>
-                                    <IconComponent style={styles.icons} onPress={() => this._delete(category.id)}
-                                                   name={'md-remove-circle-outline'}
-                                                   size={25} color={'tomato'}/>
-                                </View>
-                            </View>
+                            )
                         )
-                    )
-                }
-                <Portal>
-                    <Dialog
-                        visible={this.state.visible}
-                        onDismiss={this._hideDialog}>
-                        <Dialog.Title>Kategorie bearbeiten</Dialog.Title>
-                        <Dialog.Content>
-                            <TextInput
-                                style={styles.input}
-                                value={this.state.name}
-                                onChangeText={(text) => {
-                                    this.setState({name: text})
-                                }}
-                                label="Name"/>
-                        </Dialog.Content>
-                        <Dialog.Actions>
-                            <Button onPress={() => this._hideDialog()}>Abbrechen</Button>
-                            <Button onPress={() => this._edit(this.state.id)}>Speichern</Button>
-                        </Dialog.Actions>
-                    </Dialog>
-                </Portal>
+                    }
+                    <Portal>
+                        <Dialog
+                            visible={this.state.visible}
+                            onDismiss={this._hideDialog}>
+                            <Dialog.Title>Kategorie bearbeiten</Dialog.Title>
+                            <Dialog.Content>
+                                <TextInput
+                                    style={styles.input}
+                                    value={this.state.name}
+                                    onChangeText={(text) => {
+                                        this.setState({name: text})
+                                    }}
+                                    label="Name"/>
+                            </Dialog.Content>
+                            <Dialog.Actions>
+                                <Button onPress={() => this._hideDialog()}>Abbrechen</Button>
+                                <Button onPress={() => this._edit(this.state.id)}>Speichern</Button>
+                            </Dialog.Actions>
+                        </Dialog>
+                    </Portal>
+                </View>
             </ScrollView>
         );
     }

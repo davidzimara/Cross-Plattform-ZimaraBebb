@@ -46,18 +46,20 @@ export default class CategoryDetailScreen extends Component {
 
     render() {
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                <Text style={styles.header}>Wählen Sie eine Kategorie aus </Text>
-                {
-                    this.state.categories.map((category, key) => (
-                            <View key={key} style={styles.category}>
-                                <Button
-                                    onPress={() => this.props.navigation.navigate('play', {category: category})}
-                                    style={styles.text}> {category.name} </Button>
-                            </View>
+            <ScrollView>
+                <View style={styles.container}>
+                    <Text style={styles.header}>Wählen Sie eine Kategorie aus </Text>
+                    {
+                        this.state.categories.map((category, key) => (
+                                <View key={key} style={styles.category}>
+                                    <Button
+                                        onPress={() => this.props.navigation.navigate('play', {category: category})}
+                                        style={styles.text}> {category.name} </Button>
+                                </View>
+                            )
                         )
-                    )
-                }
+                    }
+                </View>
             </ScrollView>
         );
     }

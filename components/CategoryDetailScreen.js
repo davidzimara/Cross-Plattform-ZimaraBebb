@@ -127,77 +127,80 @@ export default class CategoryDetailScreen extends Component {
         let IconComponent = Ionicons;
 
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                <Text style={styles.header}>Fragen zu der
-                    Kategorie {this.props.navigation.getParam('category').name}</Text>
-                {
-                    this.state.questions.map((question, key) => (
-                            <View style={styles.wrapper} key={key}>
-                                <View style={styles.categoryFirst}>
-                                    <Text style={styles.text}> {question.question} </Text>
-                                    <View style={styles.categoryFirstIcon}>
+            <ScrollView>
+                <View style={styles.container}>
+                    <Text style={styles.header}>Fragen zu der
+                        Kategorie {this.props.navigation.getParam('category').name}</Text>
+                    {
+                        this.state.questions.map((question, key) => (
+                                <View style={styles.wrapper} key={key}>
+                                    <View style={styles.categoryFirst}>
+                                        <Text style={styles.text}> {question.question} </Text>
+                                        <View style={styles.categoryFirstIcon}>
+                                            <IconComponent style={styles.icons}
+                                                           onPress={() => this._editAlert(question.id, 'question')}
+                                                           name={'md-create'} size={25}
+                                                           color={'tomato'}/>
+                                            <IconComponent style={styles.icons} onPress={() => this._delete(question.id)}
+                                                           name={'md-remove-circle-outline'}
+                                                           size={25} color={'tomato'}/>
+                                        </View>
+                                    </View>
+                                    <View style={styles.category}>
+                                        <Text style={[styles.text, styles.answer]}> {question.answer1} </Text>
                                         <IconComponent style={styles.icons}
-                                                       onPress={() => this._editAlert(question.id, 'question')}
+                                                       onPress={() => this._editAlert(question.id, 'answer1')}
                                                        name={'md-create'} size={25}
                                                        color={'tomato'}/>
-                                        <IconComponent style={styles.icons} onPress={() => this._delete(question.id)}
-                                                       name={'md-remove-circle-outline'}
-                                                       size={25} color={'tomato'}/>
+                                    </View>
+                                    <View style={styles.category}>
+                                        <Text style={styles.text}> {question.answer2} </Text>
+                                        <IconComponent style={styles.icons}
+                                                       onPress={() => this._editAlert(question.id, 'answer2')}
+                                                       name={'md-create'} size={25}
+                                                       color={'tomato'}/>
+                                    </View>
+                                    <View style={styles.category}>
+                                        <Text style={styles.text}> {question.answer3} </Text>
+                                        <IconComponent style={styles.icons}
+                                                       onPress={() => this._editAlert(question.id, 'answer3')}
+                                                       name={'md-create'} size={25}
+                                                       color={'tomato'}/>
+                                    </View>
+                                    <View style={styles.category}>
+                                        <Text style={styles.text}> {question.answer4} </Text>
+                                        <IconComponent style={styles.icons}
+                                                       onPress={() => this._editAlert(question.id, 'answer4')}
+                                                       name={'md-create'} size={25}
+                                                       color={'tomato'}/>
                                     </View>
                                 </View>
-                                <View style={styles.category}>
-                                    <Text style={[styles.text, styles.answer]}> {question.answer1} </Text>
-                                    <IconComponent style={styles.icons}
-                                                   onPress={() => this._editAlert(question.id, 'answer1')}
-                                                   name={'md-create'} size={25}
-                                                   color={'tomato'}/>
-                                </View>
-                                <View style={styles.category}>
-                                    <Text style={styles.text}> {question.answer2} </Text>
-                                    <IconComponent style={styles.icons}
-                                                   onPress={() => this._editAlert(question.id, 'answer2')}
-                                                   name={'md-create'} size={25}
-                                                   color={'tomato'}/>
-                                </View>
-                                <View style={styles.category}>
-                                    <Text style={styles.text}> {question.answer3} </Text>
-                                    <IconComponent style={styles.icons}
-                                                   onPress={() => this._editAlert(question.id, 'answer3')}
-                                                   name={'md-create'} size={25}
-                                                   color={'tomato'}/>
-                                </View>
-                                <View style={styles.category}>
-                                    <Text style={styles.text}> {question.answer4} </Text>
-                                    <IconComponent style={styles.icons}
-                                                   onPress={() => this._editAlert(question.id, 'answer4')}
-                                                   name={'md-create'} size={25}
-                                                   color={'tomato'}/>
-                                </View>
-                            </View>
+                            )
                         )
-                    )
-                }
-                <Portal>
-                    <Dialog
-                        visible={this.state.visible}
-                        onDismiss={this._hideDialog}>
-                        <Dialog.Title>{this.state.translatedFieldName} bearbeiten</Dialog.Title>
-                        <Dialog.Content>
-                            <TextInput
-                                style={styles.input}
-                                value={this.state.fieldValue}
-                                onChangeText={(text) => {
-                                    this.setState({fieldValue: text})
-                                }}
-                                label={this.state.translatedFieldName}
-                            />
-                        </Dialog.Content>
-                        <Dialog.Actions>
-                            <Button onPress={() => this._hideDialog()}>Abbrechen</Button>
-                            <Button onPress={() => this._edit(this.state.id, this.state.fieldName)}>Speichern</Button>
-                        </Dialog.Actions>
-                    </Dialog>
-                </Portal>
+                    }
+                    <Portal>
+                        <Dialog
+                            visible={this.state.visible}
+                            onDismiss={this._hideDialog}>
+                            <Dialog.Title>{this.state.translatedFieldName} bearbeiten</Dialog.Title>
+                            <Dialog.Content>
+                                <TextInput
+                                    style={styles.input}
+                                    value={this.state.fieldValue}
+                                    onChangeText={(text) => {
+                                        this.setState({fieldValue: text})
+                                    }}
+                                    label={this.state.translatedFieldName}
+                                />
+                            </Dialog.Content>
+                            <Dialog.Actions>
+                                <Button onPress={() => this._hideDialog()}>Abbrechen</Button>
+                                <Button
+                                    onPress={() => this._edit(this.state.id, this.state.fieldName)}>Speichern</Button>
+                            </Dialog.Actions>
+                        </Dialog>
+                    </Portal>
+                </View>
             </ScrollView>
         );
     }

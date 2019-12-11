@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, ScrollView} from 'react-native';
+import {StyleSheet, Text, ScrollView, View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import * as firebase from 'firebase';
 
@@ -64,19 +64,22 @@ export default class CreateScreen extends Component {
 
     render() {
         return (
-            <ScrollView contentContainerStyle={styles.container}>
-                <Text style={styles.spacer}>Kategorie Erstellen</Text>
-                <TextInput value={this.state.name} label="Kategorie Name" style={styles.spacer}
-                           onChangeText={text => this.setState({name: text})}/>
-                <Button onPress={this._save} title='Speichern' mode='contained' style={styles.button}>Speichern</Button>
-                <Text style={styles.spacer}>Frage zu einer Kategorie Erstellen:</Text>
-                {
-                    this.state.categories.map((category, key) => (
-                        <Button style={styles.spacer} mode="outlined"
-                                onPress={() => this.props.navigation.navigate('createQuestion', {category: category})}
-                                key={key}> {category.name} </Button>
-                    ))
-                }
+            <ScrollView>
+                <View style={styles.container}>
+                    <Text style={styles.spacer}>Kategorie Erstellen</Text>
+                    <TextInput value={this.state.name} label="Kategorie Name" style={styles.spacer}
+                               onChangeText={text => this.setState({name: text})}/>
+                    <Button onPress={this._save} title='Speichern' mode='contained'
+                            style={styles.button}>Speichern</Button>
+                    <Text style={styles.spacer}>Frage zu einer Kategorie Erstellen:</Text>
+                    {
+                        this.state.categories.map((category, key) => (
+                            <Button style={styles.spacer} mode="outlined"
+                                    onPress={() => this.props.navigation.navigate('createQuestion', {category: category})}
+                                    key={key}> {category.name} </Button>
+                        ))
+                    }
+                </View>
             </ScrollView>
         );
     }
